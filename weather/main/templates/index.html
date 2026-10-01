@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Me</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/css/alertify.min.css" />
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+  </head>
+  <body class="weather-page">
+    <main class="weather-shell">
+      <header class="app-header">
+        <div class="brand-lockup">
+          <img src="{% static 'images/116.png' %}" alt="Weather Me icon" />
+          <div>
+            <p class="eyebrow">Personal forecast</p>
+            <h1>Weather Me</h1>
+          </div>
+        </div>
+        <span class="status-dot" aria-label="Live weather"></span>
+      </header>
+
+      <form action="{% url 'home' %}" class="search-form" method="post">
+        {% csrf_token %}
+        <label class="sr-only" for="city-search">Search for a city</label>
+        <input id="city-search" type="text" name="city" value="{{ city }}" required placeholder="Search for a city" />
+        <button type="submit" aria-label="Search">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+      </form>
+
+      <section class="weather-card" aria-label="Current weather">
+        <div class="weather-summary">
+          <p class="eyebrow">Right now</p>
+          <p class="temperature">{{ temp|floatformat:0 }}<span>°C</span></p>
+          <p class="city-name">{{ city }}</p>
+        </div>
+        <img src="{% static 'images/113.png' %}" alt="Weather" class="weather-icon" />
+      </section>
+
+      <section class="details-panel" aria-label="Weather details">
+        <div class="condition-block">
+          <img src="https://api.openweathermap.org/img/w/{{ icon }}.png" alt="{{ desc }}" />
+          <p>{{ desc|title }}</p>
+        </div>
+        <div class="stat-list">
+          <div class="stat-row">
+            <ion-icon name="thermometer-outline"></ion-icon>
+            <div><strong>{{ temp|floatformat:0 }}°C</strong><span>Temperature</span></div>
+          </div>
+          <div class="stat-row">
+            <ion-icon name="speedometer-outline"></ion-icon>
+            <div><strong>{{ wind }} m/s</strong><span>Wind speed</span></div>
+          </div>
+          <div class="stat-row">
+            <ion-icon name="rainy-outline"></ion-icon>
+            <div><strong>{{ humidity }}%</strong><span>Humidity</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    {% if messages %}
+      <div id="django-messages" hidden>
+        {% for message in messages %}
+          <span data-message="{{ message|escape }}"></span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <script>
+      const messageElements = document.querySelectorAll('[data-message]');
+      alertify.set('notifier', 'position', 'top-center');
+
+      messageElements.forEach((element) => {
+        alertify.error(element.dataset.message);
+      });
+    </script>
+  </body>
+</html>

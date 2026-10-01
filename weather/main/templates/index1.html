@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Me</title>
+    <link rel="stylesheet" href="../static/style.css" />
+  </head>
+  <body class="weather-page">
+    <main class="weather-shell">
+      <header class="app-header">
+        <div class="brand-lockup">
+          <img src="../static/images/116.png" alt="Weather Me icon" />
+          <div>
+            <p class="eyebrow">Personal forecast</p>
+            <h1>Weather Me</h1>
+          </div>
+        </div>
+        <span class="status-dot" aria-label="Live weather"></span>
+      </header>
+
+      <div class="search-form">
+        <label class="sr-only" for="city-search">Search for a city</label>
+        <input id="city-search" type="text" placeholder="Search for a city" />
+        <button type="button" aria-label="Search">
+          <ion-icon name="search-outline"></ion-icon>
+        </button>
+      </div>
+
+      <section class="weather-card" aria-label="Current weather">
+        <div class="weather-summary">
+          <p class="eyebrow">Right now</p>
+          <p class="temperature">24<span>°C</span></p>
+          <p class="city-name">Kathmandu, NP</p>
+        </div>
+        <img src="../static/images/113.png" alt="Partly cloudy" class="weather-icon" />
+      </section>
+
+      <section class="details-panel" aria-label="Weather details">
+        <div class="condition-block">
+          <img src="../static/images/113.png" alt="Partly cloudy" />
+          <p>Partly cloudy</p>
+        </div>
+        <div class="stat-list">
+          <div class="stat-row">
+            <ion-icon name="thermometer-outline"></ion-icon>
+            <div><strong>24°C</strong><span>Feels like</span></div>
+          </div>
+          <div class="stat-row">
+            <ion-icon name="speedometer-outline"></ion-icon>
+            <div><strong>3.2 m/s</strong><span>Wind speed</span></div>
+          </div>
+          <div class="stat-row">
+            <ion-icon name="rainy-outline"></ion-icon>
+            <div><strong>58%</strong><span>Humidity</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="forecast-panel" aria-label="Five day forecast">
+        <div class="section-heading">
+          <p class="eyebrow">Coming up</p>
+          <h2>Forecast</h2>
+        </div>
+        <div class="forecast-list">
+          <article class="forecast-item">
+            <span>Today</span>
+            <img src="../static/images/113.png" alt="Partly cloudy" />
+            <strong>24°</strong>
+          </article>
+          <article class="forecast-item">
+            <span>Tue</span>
+            <img src="../static/images/116.png" alt="Sunny" />
+            <strong>26°</strong>
+          </article>
+          <article class="forecast-item">
+            <span>Wed</span>
+            <img src="../static/images/113.png" alt="Partly cloudy" />
+            <strong>23°</strong>
+          </article>
+          <article class="forecast-item">
+            <span>Thu</span>
+            <img src="../static/images/116.png" alt="Sunny" />
+            <strong>25°</strong>
+          </article>
+          <article class="forecast-item">
+            <span>Fri</span>
+            <img src="../static/images/113.png" alt="Partly cloudy" />
+            <strong>22°</strong>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
